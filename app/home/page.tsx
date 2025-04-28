@@ -13,20 +13,20 @@ const HomePage = () => {
   console.log(status , ">>>>status");
   
   
-  useEffect(() => {
-    if (status === "unauthenticated") {
-      router.push("/");
-    }
-  }, [status, router]);
+  // useEffect(() => {
+  //   if (status === "unauthenticated") {
+  //     router.push("/");
+  //   }
+  // }, [status, router]);
 
-  if (status === "loading") {
-    return <p className="text-center">Loading...</p>;
-  }
+  // if (status === "loading") {
+  //   return ;
+  // }
 
   return (
     <div className="flex flex-col items-center justify-center h-screen text-center">
-      <h1 className="text-3xl mb-4">Home Page</h1>
-      {session ? (
+      {/* <h1 className="text-3xl mb-4">Home Page</h1> */}
+      {session && (
         <div>
           <p className="text-xl mb-4">Welcome, {session.user?.name}</p>
           <p className="text-lg mb-4">Email: {session.user?.email}</p>
@@ -36,11 +36,6 @@ const HomePage = () => {
           >
             Sign out
           </button>
-        </div>
-      ) : (
-        <div>
-          <p className="text-lg">Please sign in to continue.</p>
-          <FbLogin />
         </div>
       )}
     </div>
