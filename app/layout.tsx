@@ -1,18 +1,22 @@
 import type { Metadata } from "next";
-import { Geist, Geist_Mono } from "next/font/google";
+import { Geist, Geist_Mono, Poppins } from "next/font/google";
 import "./globals.css";
 import SessionWrapper from "@/components/SessionWrapper";
 import AuthGuard from "@/components/AuthGuard";
 
+// Geist fonts without the variable property
 const geistSans = Geist({
-  variable: "--font-geist-sans",
   subsets: ["latin"],
 });
 
 const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
   subsets: ["latin"],
 });
+
+// Poppins font without the variable property
+const poppins = Poppins({
+  subsets: ["latin"],
+  weight: ["100", "200", "300", "400", "500", "600", "700", "800", "900"],});
 
 export const metadata: Metadata = {
   title: "Create Next App",
@@ -24,13 +28,19 @@ export default function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  
   return (
     <html lang="en">
+      <head>
+        {/* No need for the Google Fonts <link> tag */}
+      </head>
       <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased`}
+        className={`${poppins.className} antialiased`} // Use the className property from fonts
       >
         <SessionWrapper>
-          <AuthGuard>{children}</AuthGuard>
+          <AuthGuard>
+            {children}
+          </AuthGuard>
         </SessionWrapper>
       </body>
     </html>

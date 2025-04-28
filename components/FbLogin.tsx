@@ -6,25 +6,13 @@ import React from "react";
 const FbLogin = () => {
   const { data: session } = useSession();
 
-  console.log("Session Data:", session);
-
   return (
-    <div className="flex items-center justify-center h-screen">
-      {session ? (
-        <div className="text-center">
-          <p className="mb-4">Welcome, {session.user?.name}</p>
-          <button
-            onClick={() => signOut()}
-            className="bg-red-500 hover:bg-red-600 text-white font-medium py-2 px-6 rounded-lg transition-colors duration-300 cursor-pointer"
-          >
-            Sign out
-          </button>
-        </div>
-      ) : (
-        <div>
+    <div className="flex items-center justify-center">
+      {!session && (
+        <div className="">
           <button
             onClick={() => signIn("google", { prompt: "consent", callbackUrl: "/home" })}
-            className="flex items-center gap-3 bg-white text-black border border-gray-300 hover:shadow-lg py-2 px-6 rounded-lg font-medium transition-all duration-300 cursor-pointer mb-4"
+            className="flex items-center gap-3 bg-white text-black border border-gray-300 hover:shadow-lg py-2 px-8 rounded-lg font-medium transition-all duration-300 cursor-pointer mb-4"
           >
             <img
               src="https://www.svgrepo.com/show/475656/google-color.svg"

@@ -8,8 +8,8 @@ import FbLogin from "@/components/FbLogin"; // adjust path if needed
 export default function LoginButton() {
   const { data: session } = useSession();
 
-  console.log(session , ">>>>session");
-  
+  console.log(session, ">>>>session");
+
   useEffect(() => {
     if (session) {
       console.log("User Info:", session);
@@ -25,7 +25,9 @@ export default function LoginButton() {
         </div>
       ) : (
         <div className="flex flex-col gap-4 items-center">
-          <FbLogin />
+          <Link href="/auth/signin">
+            <button className="mt-4 p-2 bg-blue-500 text-white rounded-md">Go to Login Page</button>
+          </Link>
         </div>
       )}
     </div>
