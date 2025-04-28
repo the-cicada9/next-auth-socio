@@ -1,27 +1,11 @@
 "use client";
 
 import { useSession, signOut } from "next-auth/react";
-import { useEffect } from "react";
 import { useRouter } from "next/navigation";
-import FbLogin from "@/components/FbLogin";
 
 const HomePage = () => {
   const { data: session, status } = useSession();
   const router = useRouter();
-
-  console.log(session , ">>>>data");
-  console.log(status , ">>>>status");
-  
-  
-  // useEffect(() => {
-  //   if (status === "unauthenticated") {
-  //     router.push("/");
-  //   }
-  // }, [status, router]);
-
-  // if (status === "loading") {
-  //   return ;
-  // }
 
   return (
     <div className="flex flex-col items-center justify-center h-screen text-center">

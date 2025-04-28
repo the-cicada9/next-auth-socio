@@ -1,6 +1,6 @@
 "use client";
 
-import { signIn, useSession } from "next-auth/react";
+import { useSession } from "next-auth/react";
 import Link from "next/link";
 import { useEffect } from "react";
 import FbLogin from "@/components/FbLogin"; // adjust path if needed
