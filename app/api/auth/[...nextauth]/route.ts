@@ -10,11 +10,35 @@ const handler = NextAuth({
       name: "Credentials",
       credentials: {
         email: { label: "Email", type: "email", placeholder: "example@example.com" },
-        password: { label: "Password", type: "password" }
+        // password: { label: "Password", type: "password" }
       },
       async authorize(credentials, req) {
         // Here you need to connect to your DB and validate user
         const { email, password } = credentials as { email: string; password: string };
+
+        console.log("Credentials:", credentials);
+        console.log("Email:", email);
+        console.log("Password:", password);
+        
+        // -----------------------FOR API CALLS-----------------------
+        // try {
+        //   const response = await axios.post("https://yourapi.com/api/auth/login", {
+        //     email,
+        //     password,
+        //   });
+    
+        //   if (response.data.success) {
+        //     // Return user object to NextAuth
+        //     return response.data.user; // should include at least { id, name, email }
+        //   } else {
+        //     return null; // Invalid credentials
+        //   }
+        // } catch (error) {
+        //   console.error("Login API failed:", error);
+        //   return null;
+        // }
+        // --------------------------------------------------------
+
 
         if (email === "test@example.com" && password === "password123") {
           // Example: allow login
