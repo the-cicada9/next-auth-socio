@@ -11,12 +11,22 @@ export default function SignInForm() {
   const router = useRouter();
 
   const handleEmailLogin = async () => {
+    // You're telling NextAuth to use the CredentialsProvider, which gets registered at this endpoint:
+    // it automcatically gets bind with the /api/auth/callback/credentials endpoint
+
+    // So yes — your signIn("credentials", { ... }) directly triggers the authorize function inside your CredentialsProvider by hitting that specific API route.
+
+
     const res = await signIn("credentials", {
       email,
       password,
       redirect: false,
     });
 
+    // By default, signIn() will redirect the user to the callback URL (usually the homepage or a URL passed via callbackUrl).
+    // Use redirect: false when you're building a custom login flow and want full control over what happens after login.
+
+    
     if (res?.error) {
       alert("Login failed: " + res.error);
     } else {
@@ -82,3 +92,12 @@ export default function SignInForm() {
     </div>
   );
 }
+
+
+// "credentials" is the ID of the provider.
+
+// CredentialsProvider uses "credentials" as its default ID, unless you override it manually.
+
+// NextAuth maps that ID to the correct callback route:
+// /api/auth/callback/[providerId] → /api/auth/callback/credentials
+
