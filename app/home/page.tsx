@@ -2,10 +2,13 @@
 
 import { useSession, signOut } from "next-auth/react";
 import { useRouter } from "next/navigation";
+import { log } from "node:console";
 
 const HomePage = () => {
   const { data: session, status } = useSession();
   const router = useRouter();
+  console.log(session, ">>>>session");
+  
 
   return (
     <div className="flex flex-col items-center justify-center h-screen text-center">
